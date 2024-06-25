@@ -1,4 +1,6 @@
-import 'package:money_manage/repositories/log.dart';
+import '../repositories/log.dart';
+
+import 'log.dart';
 
 class LogImpl implements Log {
   bool isDebug = true;
