@@ -25,8 +25,8 @@ class ApiImpl implements Api {
   }
 
   @override
-  Future<void> checkLogin(Login login) {
-    delay();
+  Future<bool> checkLogin(Login login) async {
+    await delay();
     if(login.username == '1' && login.password == '1')
       return Future(() => true);
     return Future(() => false);
@@ -36,7 +36,8 @@ class ApiImpl implements Api {
   Future<void> addTransaction(Transaction transaction) async {
     await delay();
     for(int i = 0; i < _data.length; i++) {
-      if (_data[i].dateTime == transaction.dateTime) throw Exception(
+      if (_data[i].dateTime == transaction.dateTime)
+        throw Exception(
           " Exception");
     }
     _data.add(transaction);

@@ -4,10 +4,15 @@ class MainState {
   final bool isLightTheme;
   final DrawerItem selected;
 
-//<editor-fold desc="Data Methods">
   const MainState.init({
     this.selected = DrawerItem.Home,
     this.isLightTheme = false,
+  });
+
+//<editor-fold desc="Data Methods">
+  const MainState({
+    required this.isLightTheme,
+    required this.selected,
   });
 
   @override
@@ -15,14 +20,18 @@ class MainState {
       identical(this, other) ||
       (other is MainState &&
           runtimeType == other.runtimeType &&
-          isLightTheme == other.isLightTheme);
+          isLightTheme == other.isLightTheme &&
+          selected == other.selected);
 
   @override
-  int get hashCode => isLightTheme.hashCode;
+  int get hashCode => isLightTheme.hashCode ^ selected.hashCode;
 
   @override
   String toString() {
-    return 'MainState{' + ' isLightTheme: $isLightTheme,' + '}';
+    return 'MainState{' +
+        ' isLightTheme: $isLightTheme,' +
+        ' selected: $selected,' +
+        '}';
   }
 
   MainState copyWith({
@@ -38,12 +47,14 @@ class MainState {
   Map<String, dynamic> toMap() {
     return {
       'isLightTheme': this.isLightTheme,
+      'selected': this.selected,
     };
   }
 
   factory MainState.fromMap(Map<String, dynamic> map) {
     return MainState(
       isLightTheme: map['isLightTheme'] as bool,
+      selected: map['selected'] as DrawerItem,
     );
   }
 

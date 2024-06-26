@@ -2,7 +2,7 @@ import '../models/login.dart';
 import '../models/transaction.dart';
 
 abstract class Api {
-  Future<void> checkLogin(Login login);
+  Future<bool> checkLogin(Login login);
   Future<double> getTotal();
   Future<List<String>> getMonths();
   Future<List<Transaction>> getTransaction(String month);
